@@ -9,27 +9,6 @@ namespace UtilityMath
 
 
 
-    //public static class EquationGenerator
-    //{
-
-    //    private static Func<int, int, Func<int, double>>[] f = new Func<int, int, Func<int, double>>[]
-    //    {
-    //    (sigma, factor) => (i) =>{ double sigma = rand.NextDouble(); return sigma + factor * Math.Sin(i * 3.14 * 10 / 180); },
-    //    (sigma, factor) => (i) =>{   double sigma = rand.NextDouble(); return sigma + factor * Math.Cos(i * 3.14 * 10 / 180); },
-    //    (maxdeviation, factor) => (i) => {   double sigma = rand.NextDouble(); return sigma + factor; }
-
-    //    };
-
-
-
-    //}
-
-
-
-
-
-
-
     public static class NoisyEquation
     {
 

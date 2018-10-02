@@ -2,14 +2,17 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
-    <Version>1.0.0-alpha</Version>
+    <Version>1.0.2-alpha</Version>
     <Description>utility math code 
-fractional number parsing, matrixbuilder singleton, random singleton, noisy equation generator, rounding helper, data normaliser, gaussian math (add,substract, multiply)</Description>
+fractional number parsing, matrixbuilder singleton, random singleton, noisy equation generator, rounding helper, data normaliser, gaussian math (add,substract, multiply), histogram, statistics</Description>
     <PackageProjectUrl>https://github.com/dtaylor-530/UtilityMath</PackageProjectUrl>
+    <AssemblyVersion>1.0.1.0</AssemblyVersion>
+    <FileVersion>1.0.0.0</FileVersion>
   </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="MathNet.Numerics" Version="4.5.1" />
+    <PackageReference Include="SharpLearning.Containers" Version="0.28.4" />
   </ItemGroup>
 
 </Project>
