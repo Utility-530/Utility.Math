@@ -8,6 +8,7 @@ fractional number parsing, matrixbuilder singleton, random singleton, noisy equa
     <PackageProjectUrl>https://github.com/dtaylor-530/UtilityMath</PackageProjectUrl>
     <AssemblyVersion>1.0.1.0</AssemblyVersion>
     <FileVersion>1.0.0.0</FileVersion>
+        <PackageLicenseExpression>MIT</PackageLicenseExpression>
   </PropertyGroup>
 
   <ItemGroup>

@@ -41,31 +41,7 @@ namespace UtilityMath
             return Enumerable.Range(0, binCount).Select(x => Tuple.Create(x * binSize + min, (x + 1) * binSize + min - dsf));
         }
 
-
-
-    
-    //public static Dictionary<Tuple<double, double>, Sample> ToSamples(this IEnumerable<Tuple<double, double>> dt, double binSize, int min = 0)
-    //{
-    //    var datax = dt.Select(_ => _.Item1);
-    //    int binCount = (int)((datax.Max() - datax.Min()) / binSize) + 1;
-
-    //    var ranges = Enumerable.Range(min, min + binCount).Select(x => Tuple.Create(x * binSize, (x + 1) * binSize));
-
-    //    var combi = dt
-    //       .GroupBy(i => ranges.FirstOrDefault(r => r.Item1 >= i.Item1 & i.Item1 < r.Item2))
-    //       .OrderBy(rt => rt.Key);
-
-    //    var cc = combi.Select(g =>
-    //    new KeyValuePair<Tuple<double, double>, Sample>(g.Key, new Sample { Mean = (double)g.Average(km => km.Item2), Size = g.Count(), StandardDeviation = StatisticalHelper.StdDev(g.Select(km => km.Item2)) }));
-
-
-    //    return cc.Where(_ => _.Key != null).ToDictionary(a => a.Key, a => a.Value); ;
-
-    //}
-
-
-
-    public static IEnumerable<KeyValuePair<Tuple<double, double>, double>> ToHistogramByBinCount(this IEnumerable<Tuple<double, double>> dt, int binCount)
+        public static IEnumerable<KeyValuePair<Tuple<double, double>, double>> ToHistogramByBinCount(this IEnumerable<Tuple<double, double>> dt, int binCount)
         {
             var densities = dt.GroupBy(_ => _.Item1).OrderBy(a => a.Key).Select(_ => new
             {
@@ -73,11 +49,11 @@ namespace UtilityMath
                 density = _.Count(),
                 average = _.Select(a => a.Item2).Average()
             }).ToList();
-            var densitiesBin = densities.Select(_ => _.density).Sum() / binCount;
+            double densitiesBin = ((double)densities.Select(_ => _.density).Sum()) / binCount;
             var list = Enumerable.Empty<object>().Select(r => new { key = 0d, density = 0, average = 0d }).ToList();
             double sumdensity = 0;
             int dcount = densities.Count;
-            for(int i=0;i<dcount;i++)
+            for (int i = 0; i < dcount; i++)
             //foreach (var x in densities)
             {
 
@@ -104,23 +80,105 @@ namespace UtilityMath
 
         public static IEnumerable<KeyValuePair<Tuple<double, double>, double>> ToHistogramByBinCount(this IEnumerable<double> dt, int binCount, int min = 0)
         {
-            var densities = dt.GroupBy(_ => _).Select(_ => new { key = _.Key, density = _.Count() });
-            var densitiesBin = densities.Select(_ => _.density).Sum() / binCount;
-            var list = Enumerable.Empty<object>().Select(r => new { key = 0d, density = 0 }).ToList();
+            var densities = dt.GroupBy(_ => _).Select(_ => new { key = _.Key, density = (double)_.Count() });
+            double densitiesBin = ((double)densities.Select(_ => _.density).Sum()) / binCount;
+            var list = Enumerable.Empty<object>().Select(r => new { key = 0d, density = 0d }).ToList();
 
             foreach (var x in densities)
             {
                 list.Add(x);
 
-                var sumdensity = list.Sum(_ => _.density);
+                double sumdensity = list.Sum(_ => _.density);
                 if (sumdensity > densitiesBin)
                 {
                     yield return new KeyValuePair<Tuple<double, double>, double>(Tuple.Create(list.First().key, list.Last().key), list.Sum(_ => 1));
                     sumdensity = densitiesBin - sumdensity;
-                    list = Enumerable.Empty<object>().Select(r => new { key = 0d, density = 0 }).ToList();
+                    list = Enumerable.Empty<object>().Select(r => new { key = 0d, density = 0d }).ToList();
                 }
             }
         }
+
+
+
+
+
+        //public static Dictionary<Tuple<double, double>, Sample> ToSamples(this IEnumerable<Tuple<double, double>> dt, double binSize, int min = 0)
+        //{
+        //    var datax = dt.Select(_ => _.Item1);
+        //    int binCount = (int)((datax.Max() - datax.Min()) / binSize) + 1;
+
+        //    var ranges = Enumerable.Range(min, min + binCount).Select(x => Tuple.Create(x * binSize, (x + 1) * binSize));
+
+        //    var combi = dt
+        //       .GroupBy(i => ranges.FirstOrDefault(r => r.Item1 >= i.Item1 & i.Item1 < r.Item2))
+        //       .OrderBy(rt => rt.Key);
+
+        //    var cc = combi.Select(g =>
+        //    new KeyValuePair<Tuple<double, double>, Sample>(g.Key, new Sample { Mean = (double)g.Average(km => km.Item2), Size = g.Count(), StandardDeviation = StatisticalHelper.StdDev(g.Select(km => km.Item2)) }));
+
+
+        //    return cc.Where(_ => _.Key != null).ToDictionary(a => a.Key, a => a.Value); ;
+
+        //}
+
+
+
+        //public static IEnumerable<KeyValuePair<Tuple<double, double>, double>> ToHistogramByBinCount(this IEnumerable<Tuple<double, double>> dt, int binCount)
+        //    {
+        //        var densities = dt.GroupBy(_ => _.Item1).OrderBy(a => a.Key).Select(_ => new
+        //        {
+        //            key = _.Key,
+        //            density = _.Count(),
+        //            average = _.Select(a => a.Item2).Average()
+        //        }).ToList();
+        //        var densitiesBin = densities.Select(_ => _.density).Sum() / binCount;
+        //        var list = Enumerable.Empty<object>().Select(r => new { key = 0d, density = 0, average = 0d }).ToList();
+        //        double sumdensity = 0;
+        //        int dcount = densities.Count;
+        //        for(int i=0;i<dcount;i++)
+        //        //foreach (var x in densities)
+        //        {
+
+        //            list.Add(densities[i]);
+        //            sumdensity = list.Sum(_ => _.density);
+        //            if (sumdensity > densitiesBin)
+        //            {
+        //                double amt = (densitiesBin / sumdensity) * Statistics.WeightedAverage(list, _ => _.average, _ => _.density);
+        //                var j = i + 1 == dcount ? i : i + 1;
+        //                yield return new KeyValuePair<Tuple<double, double>, double>(Tuple.Create(list.First().key, densities[j].key), amt);
+        //                sumdensity = densitiesBin - sumdensity;
+        //                list = Enumerable.Empty<object>().Select(r => new { key = 0d, density = 0, average = 0d }).ToList();
+        //            }
+        //        }
+        //        if (list.Count > 0)
+        //        {
+
+        //            double amt = (densitiesBin / sumdensity) * Statistics.WeightedAverage(list, _ => _.average, _ => _.density);
+        //            yield return new KeyValuePair<Tuple<double, double>, double>(Tuple.Create(list.First().key, list.Last().key), amt);
+        //        }
+
+        //    }
+
+
+        //    public static IEnumerable<KeyValuePair<Tuple<double, double>, double>> ToHistogramByBinCount(this IEnumerable<double> dt, int binCount, int min = 0)
+        //    {
+        //        var densities = dt.GroupBy(_ => _).Select(_ => new { key = _.Key, density = _.Count() });
+        //        var densitiesBin = densities.Select(_ => _.density).Sum() / binCount;
+        //        var list = Enumerable.Empty<object>().Select(r => new { key = 0d, density = 0 }).ToList();
+
+        //        foreach (var x in densities)
+        //        {
+        //            list.Add(x);
+
+        //            var sumdensity = list.Sum(_ => _.density);
+        //            if (sumdensity > densitiesBin)
+        //            {
+        //                yield return new KeyValuePair<Tuple<double, double>, double>(Tuple.Create(list.First().key, list.Last().key), list.Sum(_ => 1));
+        //                sumdensity = densitiesBin - sumdensity;
+        //                list = Enumerable.Empty<object>().Select(r => new { key = 0d, density = 0 }).ToList();
+        //            }
+        //        }
+        //    }
 
 
 

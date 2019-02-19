@@ -5,7 +5,9 @@ VisualStudioVersion = 15.0.27004.2009
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UtilityMath", "UtilityMath\UtilityMath.csproj", "{9ECB7F2E-CD1B-40F4-AB93-75E0AAEF9B27}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UtilityMath.Test", "UtilityMath.Test\UtilityMath.Test.csproj", "{1E71A9D3-ED1C-4AD1-B4D2-095EA0210D9C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UtilityMath.Test", "UtilityMath.Test\UtilityMath.Test.csproj", "{1E71A9D3-ED1C-4AD1-B4D2-095EA0210D9C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UtilityMath.WpfApp", "UtilityMath.DemoApp\UtilityMath.WpfApp.csproj", "{8C02D8BB-F077-4076-807E-374BBB7BC632}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{1E71A9D3-ED1C-4AD1-B4D2-095EA0210D9C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1E71A9D3-ED1C-4AD1-B4D2-095EA0210D9C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1E71A9D3-ED1C-4AD1-B4D2-095EA0210D9C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8C02D8BB-F077-4076-807E-374BBB7BC632}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8C02D8BB-F077-4076-807E-374BBB7BC632}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8C02D8BB-F077-4076-807E-374BBB7BC632}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8C02D8BB-F077-4076-807E-374BBB7BC632}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
