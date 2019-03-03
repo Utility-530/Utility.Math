@@ -5,12 +5,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace UtilityMath
+namespace UtilityMath.Statistics
 {
 
 
 
-    public static class NormalExtension
+    public static class GaussianCalculator
     {
 
         public static Normal Negative(this Normal sbw)

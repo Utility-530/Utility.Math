@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace UtilityMath
+namespace UtilityMath.Statistics
 {
     //Consider LinqStatistics Package
     public static class Statistics

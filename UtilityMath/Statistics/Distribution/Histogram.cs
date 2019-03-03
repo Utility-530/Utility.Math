@@ -61,7 +61,7 @@ namespace UtilityMath
                 sumdensity = list.Sum(_ => _.density);
                 if (sumdensity > densitiesBin)
                 {
-                    double amt = (densitiesBin / sumdensity) * Statistics.WeightedAverage(list, _ => _.average, _ => _.density);
+                    double amt = (densitiesBin / sumdensity) * UtilityMath.Statistics.Statistics.WeightedAverage(list, _ => _.average, _ => _.density);
                     var j = i + 1 == dcount ? i : i + 1;
                     yield return new KeyValuePair<Tuple<double, double>, double>(Tuple.Create(list.First().key, densities[j].key), amt);
                     sumdensity = densitiesBin - sumdensity;
@@ -71,7 +71,7 @@ namespace UtilityMath
             if (list.Count > 0)
             {
 
-                double amt = (densitiesBin / sumdensity) * Statistics.WeightedAverage(list, _ => _.average, _ => _.density);
+                double amt = (densitiesBin / sumdensity) * UtilityMath.Statistics.Statistics.WeightedAverage(list, _ => _.average, _ => _.density);
                 yield return new KeyValuePair<Tuple<double, double>, double>(Tuple.Create(list.First().key, list.Last().key), amt);
             }
 

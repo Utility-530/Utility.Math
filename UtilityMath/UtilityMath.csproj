@@ -2,17 +2,24 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
-    <Version>1.0.2-alpha</Version>
-    <Description>utility math code 
-fractional number parsing, matrixbuilder singleton, random singleton, noisy equation generator, rounding helper, data normaliser, gaussian math (add,substract, multiply), histogram, statistics</Description>
+    <Version>1.0.3-alpha</Version>
+    <Description>stastistics, fractional number parsing, matrixbuilder singleton, random singleton, noisy equation generator, rounding helper, data normaliser, gaussian math (add,substract, multiply), histogram</Description>
     <PackageProjectUrl>https://github.com/dtaylor-530/UtilityMath</PackageProjectUrl>
-    <AssemblyVersion>1.0.1.0</AssemblyVersion>
-    <FileVersion>1.0.0.0</FileVersion>
+    <AssemblyVersion>1.0.3.0</AssemblyVersion>
+    <FileVersion>1.0.3.0</FileVersion>
         <PackageLicenseExpression>MIT</PackageLicenseExpression>
+        <Company />
+        <Authors>Declan Taylor</Authors>
+        <PackageTags>Math Statistics Histogram Fraction</PackageTags>
+        <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
   </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="MathNet.Numerics" Version="4.5.1" />
+    <PackageReference Include="MoreLinq.Source.MoreEnumerable.Scan" Version="1.1.1">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
+    </PackageReference>
     <PackageReference Include="SharpLearning.Containers" Version="0.28.4" />
   </ItemGroup>
 

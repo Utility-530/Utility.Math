@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace UtilityMath
 {
 
-    public static class NoisyIterations
+    public static class Equations
     {
 
 

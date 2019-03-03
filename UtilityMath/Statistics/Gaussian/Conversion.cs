@@ -4,9 +4,9 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace UtilityMath
+namespace UtilityMath.Statistics
 {
-    public static class Conversion
+    public static class GaussianConversion
     {
 
         public static CertaintyPrediction ToCertaintyPrediction(this Normal normal)

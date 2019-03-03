@@ -4,14 +4,16 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace UtilityMath
+namespace UtilityMath.Conversion
 {
     //	StackOverFlow  answered Dec 16 '12 at 17:58 Brad Christie
-
+    /// <summary>
+    /// For parsing fractionals as strings
+    /// </summary>
     public static class FractionalNumber
     {
 
-        public static bool TryParse(String input, out Double result)
+        public static bool TryParse(string input, out double result)
         {
             input = (input ?? String.Empty).Trim();
             if (String.IsNullOrEmpty(input))
