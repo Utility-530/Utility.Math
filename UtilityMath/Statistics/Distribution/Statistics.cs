@@ -29,7 +29,7 @@ namespace UtilityMath.Statistics
 
 
 
-        public static double StdDev(IEnumerable<double> values)
+        public static double StandardDeviation(IEnumerable<double> values)
         {
 
             if (values.Count() > 0)
@@ -55,16 +55,45 @@ namespace UtilityMath.Statistics
                 throw new DivideByZeroException("Divide by zero exception calculating weighted average");
         }
 
+
+
+        public static Tuple<double, double> WeightedAverage(this Tuple<double, double> norm, Tuple<double, double> tup)
+        {
+            // inverser of variance
+            var v_1 = ( norm.Item2 + tup.Item2);
+            // mean over variance
+            var m_v = (norm.Item1 * norm.Item2) + (tup.Item1 * tup.Item2);
+
+            // mean equals mean over variance over inverse of variance 
+            return new Tuple<double, double>(m_v / v_1, v_1);
+
+        }
+        //
+
+        public static Tuple<double, double> WeightedAverage(this IEnumerable<Tuple<double, double>> tups, bool meanAtIndex0 = true)
+        {
+            // inverser of variance
+            var x = tups.GetEnumerator();
+            double v_1 = 0, m_v = 0;
+         
+            
+                while (x.MoveNext())
+                {
+                    v_1 += (meanAtIndex0) ?
+                        x.Current.Item2 : x.Current.Item1;
+                    // mean over variance
+                    m_v += x.Current.Item1 * x.Current.Item2;
+                }
+
+            // mean equals mean over variance over inverse of variance 
+            return new Tuple<double,double>(m_v / v_1, v_1);
+
+        }
     }
 
 
 
-    public struct Sample
-    {
-        public int Size { get; set; }
-        public double Mean { get; set; }
-        public double StandardDeviation { get; set; }
-    }
+
 
 
 

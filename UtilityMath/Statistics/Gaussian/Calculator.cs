@@ -23,44 +23,30 @@ namespace UtilityMath.Statistics
 
         public static Normal Multiply(this Normal norm1, Normal norm2)
         {
-
-            var v_1 = (1 / norm1.Variance + 1 / norm2.Variance);
-            var m_v = (norm1.Mean / norm1.Variance) + (norm2.Mean / norm2.Variance);
+            double v_1 = (1 / norm1.Variance + 1 / norm2.Variance);
+            double m_v = (norm1.Mean / norm1.Variance) + (norm2.Mean / norm2.Variance);
 
             return new Normal(m_v / v_1, Math.Sqrt(1 / v_1));
 
         }
 
-
-
-        public static Normal Multiply(this Normal norm, Tuple<double, double> tup)
+        // equivalent to weighted average
+        public static Normal Multiply(this IEnumerable<Normal> values)
         {
-            // inverser of variance
-            var v_1 = (1 / norm.Variance + 1 / tup.Item2);
-            // mean over variance
-            var m_v = (norm.Mean / norm.Variance) + (tup.Item1 / tup.Item2);
-
-            // mean equals mean over variance over inverse of variance 
-            return new Normal(m_v / v_1, Math.Sqrt(1 / v_1));
-
-        }
-
-
-        public static Normal Multiply(IEnumerable<Tuple<double, double>> tups)
-        {
-            // inverser of variance
-            var x = tups.GetEnumerator();
-            double v_1=0, m_v=0;
-            while (x.MoveNext())
-            {
-                v_1 += 1 / x.Current.Item2;
-            // mean over variance
-                m_v += x.Current.Item1 / x.Current.Item2;
+            var enumerator = values.GetEnumerator();
+            double v_1 = 0, m_v = 0;
+            while (enumerator.MoveNext())
+            {           
+                // inverse of variance
+                v_1 += 1 / enumerator.Current.Variance;
+                // mean over variance
+                m_v += enumerator.Current.Mean / enumerator.Current.Variance;
             }
-            // mean equals mean over variance over inverse of variance 
-            return new Normal(m_v / v_1, Math.Sqrt(1 / v_1));
 
+            // mean equals (mean over variance) over inverse of variance 
+            return new Normal(m_v / v_1, Math.Sqrt(1 / v_1));
         }
+
 
 
         public static Normal Divide(this Normal norm1, Normal norm2)
@@ -69,7 +55,6 @@ namespace UtilityMath.Statistics
             var m_v = (norm1.Mean / norm1.Variance) - (norm2.Mean / norm2.Variance);
 
             return new Normal(m_v / v_1, Math.Sqrt(1 / v_1));
-
         }
 
 
@@ -80,7 +65,6 @@ namespace UtilityMath.Statistics
             var m = (norm1.Mean) + (norm2.Mean);
 
             return new Normal(m, Math.Sqrt(v));
-
         }
 
 
@@ -90,7 +74,6 @@ namespace UtilityMath.Statistics
             var m = (norm1.Mean) - (norm2.Mean);
 
             return new Normal(m, Math.Sqrt(v));
-
         }
 
 
@@ -100,7 +83,6 @@ namespace UtilityMath.Statistics
             var m = (norm1.Mean / factor);
 
             return new Normal(m, s);
-
         }
 
 
@@ -110,7 +92,6 @@ namespace UtilityMath.Statistics
             var m = (norm1.Mean * factor);
 
             return new Normal(m, s);
-
         }
 
 
