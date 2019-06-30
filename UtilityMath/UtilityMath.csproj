@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
-    <Version>1.0.6</Version>
+    <Version>1.0.6-alpha</Version>
     <Description>stastistics, fractional number parsing, matrixbuilder singleton, random singleton, noisy equation generator, rounding helper, data normaliser, gaussian math (add,substract, multiply), histogram</Description>
     <PackageProjectUrl>https://github.com/dtaylor-530/UtilityMath</PackageProjectUrl>
     <AssemblyVersion>1.0.6.0</AssemblyVersion>

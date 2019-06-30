@@ -56,6 +56,28 @@ namespace UtilityMath.Conversion
                 return Math.Floor(passednumber / roundto) * roundto;
             }
         }
+
+
+
+        public static int RoundNearestPowerOfTen(int number)
+        {
+            double value = 1000000000;
+
+            while ((number - value) < 0)
+            {
+                value /= 10;
+            }
+
+            return (int)value;
+
+        }
+
+
+        public static int Round(int value, int round)
+        {
+            return value % round >= round / 2d ? value + round - value % round : value - value % round;
+        }
+
     }
 
 
