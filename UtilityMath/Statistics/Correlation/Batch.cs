@@ -1,14 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace UtilityMath.Statistics.Correlation
 {
-
     public static class Batch
     {
-
-
         /// <summary>
         /// Computes the Pearson Product-Moment Correlation coefficient.
         /// </summary>
@@ -18,12 +14,8 @@ namespace UtilityMath.Statistics.Correlation
         public static double Pearson(IEnumerable<double> dataA, IEnumerable<double> dataB,
            ref int n, ref double r, ref double meanA, ref double meanB, ref double varA, ref double varB
 
-
             )
         {
-
-
-
             // WARNING: do not try to "optimize" by summing up products instead of using differences.
             // It would indeed be faster, but numerically much less robust if large mean + low variance.
 
@@ -61,9 +53,6 @@ namespace UtilityMath.Statistics.Correlation
             }
 
             return r / Math.Sqrt(varA * varB);
-
-
-
         }
 
         /// <summary>
@@ -75,11 +64,8 @@ namespace UtilityMath.Statistics.Correlation
         public static double Pearson(IEnumerable<double> dataA, IEnumerable<double> dataB,
           int n = 0, double r = 0.0, double meanA = 0, double meanB = 0, double varA = 0, double varB = 0
 
-
         )
         {
-
-
             // WARNING: do not try to "optimize" by summing up products instead of using differences.
             // It would indeed be faster, but numerically much less robust if large mean + low variance.
 
@@ -117,9 +103,6 @@ namespace UtilityMath.Statistics.Correlation
             }
 
             return r / Math.Sqrt(varA * varB);
-
         }
-
-
     }
 }

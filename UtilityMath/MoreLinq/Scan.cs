@@ -1,4 +1,5 @@
 ﻿#region License and Terms
+
 // MoreLINQ - Extensions to LINQ to Objects
 // Copyright (c) 2009 Konrad Rudolph. All rights reserved.
 //
@@ -13,7 +14,8 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
-#endregion
+
+#endregion License and Terms
 
 namespace MoreLinq
 {
@@ -56,7 +58,7 @@ namespace MoreLinq
             if (source == null) throw new ArgumentNullException(nameof(source));
             if (transformation == null) throw new ArgumentNullException(nameof(transformation));
 
-            return ScanImpl(source, transformation, e => e.MoveNext() ? (true, e.Current) : (false,default(TSource)));
+            return ScanImpl(source, transformation, e => e.MoveNext() ? (true, e.Current) : (false, default(TSource)));
         }
 
         /// <summary>
@@ -89,7 +91,7 @@ namespace MoreLinq
             return ScanImpl(source, transformation, e => (true, seed));
         }
 
-        static IEnumerable<TState> ScanImpl<TSource, TState>(IEnumerable<TSource> source,
+        private static IEnumerable<TState> ScanImpl<TSource, TState>(IEnumerable<TSource> source,
             Func<TState, TSource, TState> transformation,
             Func<IEnumerator<TSource>, (bool, TState)> seeder)
         {
@@ -111,6 +113,3 @@ namespace MoreLinq
         }
     }
 }
-
-
-

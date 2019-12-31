@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace UtilityMath
 {
@@ -17,8 +16,6 @@ namespace UtilityMath
                 en.MoveNext();
             }
             return Tuple.Create(current, en.Current);
-
         }
-
     }
 }

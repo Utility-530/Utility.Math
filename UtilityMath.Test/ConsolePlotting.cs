@@ -4,15 +4,15 @@ using System.Linq;
 //https://www.daniweb.com/programming/software-development/code/464667/plotting-a-function-in-a-console-window-in-c
 namespace ConsolePlotting
 {
-    class Program
+    internal class Program
     {
-        const char BLANK = ' ';
-        const char DOT = '.';
-        const char X = 'x';
-        const int cMaxLineChars = 79;
-        const int cHalf = cMaxLineChars / 2;
+        private const char BLANK = ' ';
+        private const char DOT = '.';
+        private const char X = 'x';
+        private const int cMaxLineChars = 79;
+        private const int cHalf = cMaxLineChars / 2;
 
-        static char[] LINE = new char[cMaxLineChars];
+        private static char[] LINE = new char[cMaxLineChars];
         //delegate double FUNC(double X);
 
         //static void Main(string[] args)
@@ -26,7 +26,7 @@ namespace ConsolePlotting
         //    Console.ReadKey();
         //}
 
-        public static void RandomPlot(Func<double,double> TheDelegate)
+        public static void RandomPlot(Func<double, double> TheDelegate)
         {
             fillUp(LINE, WithChar: DOT); // line of dots for "vertical" axis
             Console.WriteLine(LINE);
@@ -39,14 +39,15 @@ namespace ConsolePlotting
             fillUp(LINE, WithChar: DOT); // line of dots for "vertical" axis
             Console.WriteLine(LINE);
             fillUp(LINE, WithChar: BLANK); // clear the line
-            PlotFunc(x,y);
+            PlotFunc(x, y);
         }
+
         // just another function to show that this delegate points to functions with same signature
         //static double Sinc(double x)
         //{
         //    return Math.Sin(x) / x;
         //}
-        public static void RandomPlotFunc(Func<double,double> f)
+        public static void RandomPlotFunc(Func<double, double> f)
         {
             double maxval = 9.0; //arbitrary values
             double delta = 0.2; //size of iteration steps
@@ -62,9 +63,7 @@ namespace ConsolePlotting
             }
         }
 
-
-  
-        static void PlotFunc(int[] x, double[] y)
+        private static void PlotFunc(int[] x, double[] y)
         {
             double maxval = 9.0; //arbitrary values
             int delta = 1; //size of iteration steps
@@ -83,15 +82,12 @@ namespace ConsolePlotting
             }
         }
 
-
-
-        static void fillUp(char[] line, char WithChar = '\0')
+        private static void fillUp(char[] line, char WithChar = '\0')
         {
             for (int i = 0; i < line.Length; i++)
             {
                 line[i] = WithChar;
             }
         }
-
     }
 }

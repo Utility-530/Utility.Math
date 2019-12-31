@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace UtilityMath.Statistics.Correlation
 {
@@ -10,22 +7,21 @@ namespace UtilityMath.Statistics.Correlation
 
     public class RollingPearson
     {
-        int n = 0;
-        double r = 0.0;
+        private int n = 0;
+        private double r = 0.0;
 
-        double meanA = 0;
-        double meanB = 0;
-        double varA = 0;
-        double varB = 0;
+        private double meanA = 0;
+        private double meanB = 0;
+        private double varA = 0;
+        private double varB = 0;
 
-        List<double> _dataA;
-        List<double> _dataB;
-        double correlation;
+        private List<double> _dataA;
+        private List<double> _dataB;
+        private double correlation;
 
         public double Correlation { get { if (count == 0 || count == 1) return 0; else return correlation; } }
 
-        int count;
-
+        private int count;
 
         public RollingPearson(List<double> dataA, List<double> dataB)
         {
@@ -41,7 +37,6 @@ namespace UtilityMath.Statistics.Correlation
 
         public double Update(double a, double b)
         {
-
             _dataA.Add(a);
             _dataB.Add(b);
             count++;
@@ -63,15 +58,8 @@ namespace UtilityMath.Statistics.Correlation
             varB += scaleDeltaB * deltaB * (n - 1);
             r += (deltaA * deltaB * (n - 1)) / n;
 
-            correlation = r/ Math.Sqrt(varA * varB);
+            correlation = r / Math.Sqrt(varA * varB);
             return Correlation;
         }
-
-
-
-
     }
-
-
-
 }

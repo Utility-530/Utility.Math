@@ -3,8 +3,8 @@
                     xmlns:local="clr-namespace:UtilityMath.WpfApp"
                     xmlns:pt="http://propertytools.org/wpf"
                     xmlns:oxy="http://oxyplot.org/wpf">
-    
-    <local:StringFomatConverter x:Key="FormatConverter"/>
+
+    <local:StringFomatConverter x:Key="FormatConverter" />
 
     <Style TargetType="{x:Type local:HistogramControl }">
         <Setter Property="Template">
@@ -12,50 +12,47 @@
                 <ControlTemplate TargetType="{x:Type local:HistogramControl}">
                     <DockPanel>
                         <ToolBar DockPanel.Dock="Top">
-                            <CheckBox Height="20" IsChecked="{Binding ShowEstimation,RelativeSource={RelativeSource TemplatedParent}}" Margin="10" Content="Show Estimation" x:Name="cbShow"/>
+                            <CheckBox Height="20" IsChecked="{Binding ShowEstimation,RelativeSource={RelativeSource TemplatedParent}}" Margin="10" Content="Show Estimation" x:Name="cbShow" />
 
                             <Label Content="Bin Size" VerticalAlignment="Center"></Label>
                             <pt:SpinControl Value="{Binding BinSize,RelativeSource={RelativeSource TemplatedParent}}" Margin="4" Minimum="0" Height="25" SmallChange="0.1" LargeChange="1.0">
-                                <TextBox Text="{Binding BinSize,Converter={StaticResource FormatConverter},ConverterParameter=\{0:n3\},RelativeSource={RelativeSource TemplatedParent}}"  Width="30" BorderThickness="0" HorizontalContentAlignment="Right"/>
+                                <TextBox Text="{Binding BinSize,Converter={StaticResource FormatConverter},ConverterParameter=\{0:n3\},RelativeSource={RelativeSource TemplatedParent}}"  Width="30" BorderThickness="0" HorizontalContentAlignment="Right" />
                             </pt:SpinControl>
                             <Label Content="Bin Count" VerticalAlignment="Center"></Label>
-                            <pt:SpinControl Value="{Binding BinCount,RelativeSource={RelativeSource TemplatedParent}}" Margin="4" Minimum="0" Height="25" SmallChange="1" >
-                                <TextBox Text="{Binding BinCount,RelativeSource={RelativeSource TemplatedParent}}"  Width="30" BorderThickness="0" HorizontalContentAlignment="Right"/>
+                            <pt:SpinControl Value="{Binding BinCount,RelativeSource={RelativeSource TemplatedParent}}" Margin="4" Minimum="0" Height="25" SmallChange="1">
+                                <TextBox Text="{Binding BinCount,RelativeSource={RelativeSource TemplatedParent}}"  Width="30" BorderThickness="0" HorizontalContentAlignment="Right" />
                             </pt:SpinControl>
-                            <!--<TextBlock Text="{TemplateBinding Error}"/>
-                            <Label Content="Filter" VerticalAlignment="Center"/>
-                            <TextBlock Text="{TemplateBinding FilterOn}" VerticalAlignment="Center"/>
-                            <Button Content="Optimise" Command="{TemplateBinding OptimiseCommand}"/>-->
-
+                            <!--<TextBlock Text="{TemplateBinding Error}" />
+                            <Label Content="Filter" VerticalAlignment="Center" />
+                            <TextBlock Text="{TemplateBinding FilterOn}" VerticalAlignment="Center" />
+                            <Button Content="Optimise" Command="{TemplateBinding OptimiseCommand}" />-->
                         </ToolBar>
                         <Grid>
-                            <!--<TextBlock Text="{TemplateBinding Error}" FontSize="32"/>-->
+                            <!--<TextBlock Text="{TemplateBinding Error}" FontSize="32" />-->
                             <oxy:Plot IsLegendVisible="True" Name="plot">
                                 <oxy:Plot.Resources>
-                                    <BooleanToVisibilityConverter x:Key="bool2vis"/>
+                                    <BooleanToVisibilityConverter x:Key="bool2vis" />
                                 </oxy:Plot.Resources>
                                 <oxy:Plot.Axes>
-                                    <oxy:LinearAxis Position="Bottom" IsAxisVisible="True"/>
-                                    <oxy:LinearAxis Position="Left"/>
+                                    <oxy:LinearAxis Position="Bottom" IsAxisVisible="True" />
+                                    <oxy:LinearAxis Position="Left" />
                                 </oxy:Plot.Axes>
                                 <oxy:Plot.Series>
 
-                                    <oxy:TwoColorAreaSeries ItemsSource="{TemplateBinding Points}" 
-                                            Title="Histogram"               
-                                            DataFieldX="Item1" 
-                                            DataFieldY="Item2" 
-                                            Fill="LightBlue" 
-                                                            StrokeThickness="2" 
-                                                            LineStyle="Solid" 
-                                                            Limit="0" MarkerSize="2" 
-                                                            MarkerFill="Blue" 
+                                    <oxy:TwoColorAreaSeries ItemsSource="{TemplateBinding Points}"
+                                            Title="Histogram"
+                                            DataFieldX="Item1"
+                                            DataFieldY="Item2"
+                                            Fill="LightBlue"
+                                                            StrokeThickness="2"
+                                                            LineStyle="Solid"
+                                                            Limit="0" MarkerSize="2"
+                                                            MarkerFill="Blue"
                                                             MarkerFill2="Red"
-                                                            MarkerType="Circle" 
-                                                            Fill2="Tomato" 
-                                                            Color="Blue" 
-                                                            Color2="Red"/>
-
-
+                                                            MarkerType="Circle"
+                                                            Fill2="Tomato"
+                                                            Color="Blue"
+                                                            Color2="Red" />
                                 </oxy:Plot.Series>
                             </oxy:Plot>
                         </Grid>
@@ -63,6 +60,5 @@
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
-
     </Style>
 </ResourceDictionary>

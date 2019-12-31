@@ -1,22 +1,9 @@
-﻿
-using System;
-using System.Collections.Generic;
-using System.Globalization;
-using System.Linq;
-using System.Net;
-using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System;
 
 namespace UtilityMath.Conversion
 {
-
-
     public static class RoundingHelper
     {
-
-
-
         public static Double RoundUpToNearest(Double passednumber, Double roundto)
         {
             // 105.5 up to nearest 1 = 106
@@ -57,8 +44,6 @@ namespace UtilityMath.Conversion
             }
         }
 
-
-
         public static int RoundNearestPowerOfTen(int number)
         {
             double value = 1000000000;
@@ -69,17 +54,11 @@ namespace UtilityMath.Conversion
             }
 
             return (int)value;
-
         }
-
 
         public static int Round(int value, int round)
         {
             return value % round >= round / 2d ? value + round - value % round : value - value % round;
         }
-
     }
-
-
 }
-

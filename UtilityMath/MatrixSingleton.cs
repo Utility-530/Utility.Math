@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace UtilityMath
+﻿namespace UtilityMath
 {
     public sealed class MatrixBuilder
     {
@@ -21,11 +15,7 @@ namespace UtilityMath
             Builder = MathNet.Numerics.LinearAlgebra.Matrix<double>.Build;
         }
 
-
         public MathNet.Numerics.LinearAlgebra.MatrixBuilder<double> Builder { get; set; }
-
-
-
 
         public static MatrixBuilder Instance
         {
@@ -35,7 +25,6 @@ namespace UtilityMath
             }
         }
     }
-
 
     public sealed class VectorBuilder
     {
@@ -52,11 +41,7 @@ namespace UtilityMath
             Builder = MathNet.Numerics.LinearAlgebra.Vector<double>.Build;
         }
 
-
         public MathNet.Numerics.LinearAlgebra.VectorBuilder<double> Builder { get; set; }
-
-
-
 
         public static VectorBuilder Instance
         {
@@ -66,5 +51,4 @@ namespace UtilityMath
             }
         }
     }
-
 }

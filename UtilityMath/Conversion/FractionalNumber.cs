@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace UtilityMath.Conversion
 {
@@ -12,9 +8,8 @@ namespace UtilityMath.Conversion
     /// </summary>
     public static class FractionalNumber
     {
-
         public static double Parse(string input)
-        {    
+        {
             input = (input ?? string.Empty).Trim();
             if (string.IsNullOrEmpty(input))
             {
@@ -58,7 +53,6 @@ namespace UtilityMath.Conversion
             }
 
             throw new ArgumentException("Unable to parse.");
-
         }
 
         public static bool TryParse(string input, out double result)
@@ -69,7 +63,7 @@ namespace UtilityMath.Conversion
             {
                 result = Parse(input);
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 Console.WriteLine(ex.Message);
                 success = false;
@@ -78,9 +72,7 @@ namespace UtilityMath.Conversion
             return success;
         }
 
-
-
-                //https://stackoverflow.com/questions/14320891/convert-percentage-to-nearest-fraction
+        //https://stackoverflow.com/questions/14320891/convert-percentage-to-nearest-fraction
         // answered Jan 14 '13 at 16:44    DasKrümelmonster
         public static (int, int) GetFraction(double value, double tolerance = 0.02)
         {
@@ -100,6 +92,5 @@ namespace UtilityMath.Conversion
             else
                 return (c * b_t + 1, c * a_t * b_t + a_t + c);
         }
-
     }
 }

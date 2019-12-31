@@ -4,6 +4,5 @@
              xmlns:local="clr-namespace:UtilityMath.WpfApp"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
-         
     </Application.Resources>
 </Application>

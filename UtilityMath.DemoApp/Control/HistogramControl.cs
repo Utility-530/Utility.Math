@@ -1,24 +1,17 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.ComponentModel;
 using System.Linq;
-using System.Text;
+using System.Reactive.Linq;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Input;
-using System.Reactive;
-using System.Reactive.Linq;
 using UtilityHelper;
 using UtilityHelper.NonGeneric;
 
-
 namespace UtilityMath.WpfApp
 {
-
-    public partial class HistogramControl :Control
+    public partial class HistogramControl : Control
     {
         public static readonly DependencyProperty DataProperty = DependencyProperty.Register("Data", typeof(IEnumerable), typeof(HistogramControl), new PropertyMetadata(null, DataChanged));
 
@@ -26,12 +19,11 @@ namespace UtilityMath.WpfApp
 
         public static readonly DependencyProperty BinCountProperty = DependencyProperty.Register("BinCount", typeof(double), typeof(HistogramControl), new PropertyMetadata(22d, BinCountChanged));
 
-        public  static readonly DependencyProperty ObservationProperty = DependencyProperty.Register("Observation", typeof(string), typeof(HistogramControl), new PropertyMetadata("", OnPropertyChangedObservation));
+        public static readonly DependencyProperty ObservationProperty = DependencyProperty.Register("Observation", typeof(string), typeof(HistogramControl), new PropertyMetadata("", OnPropertyChangedObservation));
 
-        public  static readonly DependencyProperty TargetProperty = DependencyProperty.Register("Target", typeof(string), typeof(HistogramControl), new PropertyMetadata("", OnPropertyChangedTarget));
+        public static readonly DependencyProperty TargetProperty = DependencyProperty.Register("Target", typeof(string), typeof(HistogramControl), new PropertyMetadata("", OnPropertyChangedTarget));
 
-
-        public static readonly DependencyProperty PointsProperty = DependencyProperty.Register("Points", typeof(IEnumerable<Tuple<double,double>>), typeof(HistogramControl), new PropertyMetadata(null));
+        public static readonly DependencyProperty PointsProperty = DependencyProperty.Register("Points", typeof(IEnumerable<Tuple<double, double>>), typeof(HistogramControl), new PropertyMetadata(null));
 
         public string Target
         {
@@ -63,8 +55,6 @@ namespace UtilityMath.WpfApp
             set { SetValue(BinCountProperty, value); }
         }
 
-
-
         static HistogramControl()
         {
             DefaultStyleKeyProperty.OverrideMetadata(typeof(HistogramControl), new FrameworkPropertyMetadata(typeof(HistogramControl)));
@@ -74,11 +64,11 @@ namespace UtilityMath.WpfApp
         {
             (d as HistogramControl).ObservationObservable.OnNext(e.NewValue);
         }
+
         private static void OnPropertyChangedTarget(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
             (d as HistogramControl).TargetObservable.OnNext(e.NewValue);
         }
-
 
         private static void BinCountChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
@@ -95,8 +85,6 @@ namespace UtilityMath.WpfApp
             (d as HistogramControl).PointsObservable.OnNext(3);
         }
 
-
-    
         protected System.Reactive.Subjects.ISubject<int> PointsObservable { get; set; } = new System.Reactive.Subjects.Subject<int>();
         protected System.Reactive.Subjects.ISubject<object> ObservationObservable = new System.Reactive.Subjects.Subject<object>();
         protected System.Reactive.Subjects.ISubject<object> TargetObservable = new System.Reactive.Subjects.Subject<object>();
@@ -104,17 +92,15 @@ namespace UtilityMath.WpfApp
         public HistogramControl() : base()
 
         {
-
-
             TargetObservable.StartWith("Target").Where(_ => _ != null).DistinctUntilChanged().CombineLatest(
-             ObservationObservable.StartWith("Observation").Where(_=>_!=null).DistinctUntilChanged(),
-             PointsObservable.StartWith(1), (c, d, e) => new {t= (string)c,o=(string) d, p=e })
+             ObservationObservable.StartWith("Observation").Where(_ => _ != null).DistinctUntilChanged(),
+             PointsObservable.StartWith(1), (c, d, e) => new { t = (string)c, o = (string)d, p = e })
              .Subscribe(_ =>
              {
                  switch (_.p)
                  {
                      case (1):
-                         OnPropertyChanged(HistogramMethod.Count,_.t,_.o); break;
+                         OnPropertyChanged(HistogramMethod.Count, _.t, _.o); break;
                      case (2):
                          OnPropertyChanged(HistogramMethod.Size, _.t, _.o); break;
                      case (3):
@@ -123,10 +109,9 @@ namespace UtilityMath.WpfApp
                          throw new ArgumentOutOfRangeException();
                  }
              });
-
         }
 
-        private async void OnPropertyChanged(HistogramMethod method,string target,string observation)
+        private async void OnPropertyChanged(HistogramMethod method, string target, string observation)
         {
             hmethod = method;
             var data = Data;
@@ -134,54 +119,48 @@ namespace UtilityMath.WpfApp
             var io = await Task.Run(() => GetInputOutput(data, observation, target));
             if (io != null)
             {
-                await Update(io.Item1.Zip(io.Item2, (a, b) => Tuple.Create(a, b)).ToArray(),  BinCount, BinSize,  method)
-                    .ContinueWith(async (xx)=>
-                await this.Dispatcher.InvokeAsync(async() =>
+                await Update(io.Item1.Zip(io.Item2, (a, b) => Tuple.Create(a, b)).ToArray(), BinCount, BinSize, method)
+                    .ContinueWith(async (xx) =>
+                await this.Dispatcher.InvokeAsync(async () =>
                 {
                     var points = await xx;
                     if (points != null)
                     {
-                        this.SetValue(PointsProperty,points);
+                        this.SetValue(PointsProperty, points);
                     }
                 }, System.Windows.Threading.DispatcherPriority.Background, default(System.Threading.CancellationToken)));
                 //subject.OnNext(data.ToList());
             }
         }
 
-
         /*  static*/
-        HistogramMethod hmethod = HistogramMethod.Size;
+        private HistogramMethod hmethod = HistogramMethod.Size;
 
         private static void OnShowEstimationPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-
         }
 
-
-        private static async Task<dynamic> Update(IEnumerable<Tuple<double, double>> data, double bincount, double binsize,  HistogramMethod method)
+        private static async Task<dynamic> Update(IEnumerable<Tuple<double, double>> data, double bincount, double binsize, HistogramMethod method)
         {
-
             if (data != null)
                 if (data.Count() > 0)
                 {
-                    return  await Task.Run(() =>
-                     {
-                         var his = GetHistogram(data, method, Convert.ToInt16(bincount), (double)binsize);
-                         return  his.SelectMany(_ => new[] { Tuple.Create(_.Key.Item1, _.Value), Tuple.Create(_.Key.Item2, _.Value) }).ToList();
-                     });
+                    return await Task.Run(() =>
+                    {
+                        var his = GetHistogram(data, method, Convert.ToInt16(bincount), (double)binsize);
+                        return his.SelectMany(_ => new[] { Tuple.Create(_.Key.Item1, _.Value), Tuple.Create(_.Key.Item2, _.Value) }).ToList();
+                    });
                 }
 
             return null;
         }
 
-
-
-        public static Tuple<double[],double[]> GetInputOutput(IEnumerable data, string observation, string target)
+        public static Tuple<double[], double[]> GetInputOutput(IEnumerable data, string observation, string target)
         {
             if (data == null || data.Count() == 0)
                 return default(Tuple<double[], double[]>);
 
-            var contains = data.First().GetType().GetProperties().Select(_=>_.Name).Contains( observation);
+            var contains = data.First().GetType().GetProperties().Select(_ => _.Name).Contains(observation);
             if (contains)
             {
                 var observations = UtilityHelper.PropertyHelper.GetPropValues<double>(data, observation).ToArray();
@@ -192,27 +171,24 @@ namespace UtilityMath.WpfApp
             return default(Tuple<double[], double[]>);
         }
 
-
-         static Dictionary<Tuple<double, double>, double> GetHistogram(IEnumerable<Tuple<double, double>> data, HistogramMethod method, int bincount, double binsize)
+        private static Dictionary<Tuple<double, double>, double> GetHistogram(IEnumerable<Tuple<double, double>> data, HistogramMethod method, int bincount, double binsize)
         {
             switch (method)
             {
                 case (HistogramMethod.Count):
                     return UtilityMath.Histogram.ToHistogramByBinCount((data), bincount).ToDictionary(_ => _.Key, _ => _.Value);
+
                 case (HistogramMethod.Size):
                     return UtilityMath.Histogram.ToHistogram((data), binsize);
+
                 default:
                     throw new ArgumentOutOfRangeException();
             }
-
         }
 
-        enum HistogramMethod
+        private enum HistogramMethod
         {
             Size, Count
         }
     }
-
-
-  
 }

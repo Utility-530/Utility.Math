@@ -5,8 +5,8 @@
     <Version>1.0.6-alpha</Version>
     <Description>stastistics, fractional number parsing, matrixbuilder singleton, random singleton, noisy equation generator, rounding helper, data normaliser, gaussian math (add,substract, multiply), histogram</Description>
     <PackageProjectUrl>https://github.com/dtaylor-530/UtilityMath</PackageProjectUrl>
-    <AssemblyVersion>1.0.6.0</AssemblyVersion>
-    <FileVersion>1.0.6.0</FileVersion>
+    <AssemblyVersion>1.0.8.0</AssemblyVersion>
+    <FileVersion>1.0.8.0</FileVersion>
         <PackageLicenseExpression>MIT</PackageLicenseExpression>
         <Company />
         <Authors>Declan Taylor</Authors>

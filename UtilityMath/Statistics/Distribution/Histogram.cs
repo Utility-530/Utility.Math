@@ -1,21 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace UtilityMath
 {
-
     public static class Histogram
     {
-
-
         public static Dictionary<Tuple<double, double>, double> ToHistogram(this IEnumerable<Tuple<double, double>> dt, double binSize)
         {
             var ranges = dt.GetRanges(binSize).ToList();
 
             return dt.ToHistogram(ranges);
-
         }
 
         public static Dictionary<Tuple<double, double>, double> ToHistogram(this IEnumerable<Tuple<double, double>> dt, IEnumerable<Tuple<double, double>> ranges)
@@ -25,15 +20,12 @@ namespace UtilityMath
                 .OrderBy(rt => rt.Key)
                 .Where(_ => _.Key != null)
                 .ToDictionary(a => a.Key, a => (double)a.Average(km => km.Item2));
-
-
         }
 
-        static double dsf = double.Epsilon;
+        private static double dsf = double.Epsilon;
 
         public static IEnumerable<Tuple<double, double>> GetRanges(this IEnumerable<Tuple<double, double>> dt, double binSize)
         {
-
             var datax = dt.Select(_ => _.Item1);
             var min = datax.Min() - binSize / 2;
             int binCount = (int)((datax.Max() - min) / binSize) + (int)(binSize);
@@ -56,7 +48,6 @@ namespace UtilityMath
             for (int i = 0; i < dcount; i++)
             //foreach (var x in densities)
             {
-
                 list.Add(densities[i]);
                 sumdensity = list.Sum(_ => _.density);
                 if (sumdensity > densitiesBin)
@@ -70,13 +61,10 @@ namespace UtilityMath
             }
             if (list.Count > 0)
             {
-
                 double amt = (densitiesBin / sumdensity) * UtilityMath.Statistics.Statistics.WeightedAverage(list, _ => _.average, _ => _.density);
                 yield return new KeyValuePair<Tuple<double, double>, double>(Tuple.Create(list.First().key, list.Last().key), amt);
             }
-
         }
-
 
         public static IEnumerable<KeyValuePair<Tuple<double, double>, double>> ToHistogramByBinCount(this IEnumerable<double> dt, int binCount, int min = 0)
         {
@@ -98,10 +86,6 @@ namespace UtilityMath
             }
         }
 
-
-
-
-
         //public static Dictionary<Tuple<double, double>, Sample> ToSamples(this IEnumerable<Tuple<double, double>> dt, double binSize, int min = 0)
         //{
         //    var datax = dt.Select(_ => _.Item1);
@@ -116,12 +100,9 @@ namespace UtilityMath
         //    var cc = combi.Select(g =>
         //    new KeyValuePair<Tuple<double, double>, Sample>(g.Key, new Sample { Mean = (double)g.Average(km => km.Item2), Size = g.Count(), StandardDeviation = StatisticalHelper.StdDev(g.Select(km => km.Item2)) }));
 
-
         //    return cc.Where(_ => _.Key != null).ToDictionary(a => a.Key, a => a.Value); ;
 
         //}
-
-
 
         //public static IEnumerable<KeyValuePair<Tuple<double, double>, double>> ToHistogramByBinCount(this IEnumerable<Tuple<double, double>> dt, int binCount)
         //    {
@@ -138,7 +119,6 @@ namespace UtilityMath
         //        for(int i=0;i<dcount;i++)
         //        //foreach (var x in densities)
         //        {
-
         //            list.Add(densities[i]);
         //            sumdensity = list.Sum(_ => _.density);
         //            if (sumdensity > densitiesBin)
@@ -152,13 +132,11 @@ namespace UtilityMath
         //        }
         //        if (list.Count > 0)
         //        {
-
         //            double amt = (densitiesBin / sumdensity) * Statistics.WeightedAverage(list, _ => _.average, _ => _.density);
         //            yield return new KeyValuePair<Tuple<double, double>, double>(Tuple.Create(list.First().key, list.Last().key), amt);
         //        }
 
         //    }
-
 
         //    public static IEnumerable<KeyValuePair<Tuple<double, double>, double>> ToHistogramByBinCount(this IEnumerable<double> dt, int binCount, int min = 0)
         //    {
@@ -180,16 +158,10 @@ namespace UtilityMath
         //        }
         //    }
 
-
-
-
-
         //public static List<T> CreateList<T>(params T[] elements)
         //{
         //    return new List<T>(elements);
         //}
-
-
 
         //public static IEnumerable<double> CumulativeSum(this IEnumerable<double> sequence)
         //{
@@ -201,10 +173,8 @@ namespace UtilityMath
         //    }
         //}
 
-
         //public static IEnumerable<double> CumulativeSum(this IEnumerable<double> sequence, IEnumerable<double> sequence2)
         //{
-
         //    var en = sequence.GetEnumerator();
 
         //    foreach (var item in sequence2)
@@ -217,10 +187,8 @@ namespace UtilityMath
         //        }
         //        var diff = item - sum;
 
-
         //        yield return sum;
         //    }
         //}
     }
-
 }

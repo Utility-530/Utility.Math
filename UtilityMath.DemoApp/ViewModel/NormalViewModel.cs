@@ -4,14 +4,13 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reactive.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace UtilityMath.WpfApp
 {
     public class NormalViewModel : ReactiveObject
     {
-        System.Reflection.MethodInfo selectedValue;
+        private System.Reflection.MethodInfo selectedValue;
 
         public ViewModel.Normal I1 { get; } = new ViewModel.Normal { Mean = 2, StandardDeviation = 3 };
 
@@ -26,7 +25,6 @@ namespace UtilityMath.WpfApp
             .Concat(typeof(UtilityMath.Statistics.GaussianCalculator).GetMethodsBySignature(typeof(Normal), typeof(Normal), typeof(Normal), typeof(int)))
             .ToDictionary(_ => _.Name, _ => _);
 
-
         public NormalViewModel()
         {
             I1.WhenAnyValue(_ => _.Output).CombineLatest(I2.WhenAnyValue(_ => _.Output), this.WhenAnyValue(_ => _.SelectedValue).Where(_ => _ != null), (a, b, c) =>
@@ -39,5 +37,4 @@ namespace UtilityMath.WpfApp
                 });
         }
     }
-
 }

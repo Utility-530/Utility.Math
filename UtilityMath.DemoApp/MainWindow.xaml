@@ -10,17 +10,16 @@
         <TabControl>
             <TabItem Header="Normal">
                 <TabItem.DataContext>
-                    <local:NormalViewModel/>
+                    <local:NormalViewModel />
                 </TabItem.DataContext>
                 <StackPanel>
 
                     <UniformGrid Rows="1">
-                        <local:NormalDistribution DataContext="{Binding I1}" Width="300" Mean="{Binding Mean,Mode=TwoWay,FallbackValue= 10}" StandardDeviation="{Binding StandardDeviation,Mode=TwoWay,FallbackValue= 10}"></local:NormalDistribution>
-                        <local:NormalDistribution DataContext="{Binding I2}" Width="300" Mean="{Binding Mean,Mode=TwoWay,FallbackValue= 10}" StandardDeviation="{Binding StandardDeviation,Mode=TwoWay,FallbackValue= 10}"></local:NormalDistribution>
-
+                        <local:NormalDistribution DataContext="{Binding I1}" Width="400" Mean="{Binding Mean,Mode=TwoWay,FallbackValue= 10}" StandardDeviation="{Binding StandardDeviation,Mode=TwoWay,FallbackValue= 10}"></local:NormalDistribution>
+                        <local:NormalDistribution DataContext="{Binding I2}" Width="400" Mean="{Binding Mean,Mode=TwoWay,FallbackValue= 10}" StandardDeviation="{Binding StandardDeviation,Mode=TwoWay,FallbackValue= 10}"></local:NormalDistribution>
                     </UniformGrid>
                     <ComboBox SelectedValue="{Binding SelectedValue,Mode=OneWayToSource}" SelectedValuePath="Value" SelectedIndex="0" ItemsSource="{Binding Dictionary,Mode=OneTime}" Width="150"></ComboBox>
-                    <local:NormalDistribution  DataContext="{Binding O1}" Width="300" IsReadOnly="True" Mean="{Binding Mean,Mode=TwoWay,FallbackValue= 10}" StandardDeviation="{Binding StandardDeviation,Mode=TwoWay,FallbackValue= 10}"></local:NormalDistribution>
+                    <local:NormalDistribution  DataContext="{Binding O1}" Width="600" IsReadOnly="True" Mean="{Binding Mean,Mode=TwoWay,StringFormat=N3,FallbackValue= 10}" StandardDeviation="{Binding StandardDeviation,Mode=TwoWay,StringFormat=N3,FallbackValue= 10}"></local:NormalDistribution>
                 </StackPanel>
             </TabItem>
 
@@ -30,11 +29,11 @@
                 </TabItem.DataContext>
 
                 <DockPanel>
-                    <local:HistogramControl 
-                        
+                    <local:HistogramControl
+
                         x:Name="hc" DockPanel.Dock="Top" Height="300"
-                        Data="{Binding Points }" 
-                        Target="Item2" 
+                        Data="{Binding Points }"
+                        Target="Item2"
                         Observation="Item1" />
                 </DockPanel>
             </TabItem>

@@ -3,16 +3,12 @@ using OxyPlot;
 using OxyPlot.Axes;
 using OxyPlot.Series;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace UtilityMath.WpfApp
 {
     public class PlotModelService
     {
-
         public PlotModel Create(DoubleRange? range, string title, double[] x, double[] y, bool discrete)
         {
             var plotModel = new PlotModel();
@@ -35,7 +31,6 @@ namespace UtilityMath.WpfApp
 
             double maxGrace = ymax * 0.1;
             double minGrace = ymin * 0.1;
-
 
             if (!discrete)
             {
@@ -142,9 +137,7 @@ namespace UtilityMath.WpfApp
             plotModel.TitleFontWeight = 1;
             plotModel.TitlePadding = 2;
 
-
             return plotModel;
         }
-
     }
 }
