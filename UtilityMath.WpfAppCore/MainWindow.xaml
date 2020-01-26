@@ -1,0 +1,34 @@
+﻿<Window x:Class="UtilityMath.WpfApp.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:UtilityMath.WpfApp"
+        xmlns:view="clr-namespace:UtilityMath.ViewCore;assembly=UtilityMath.ViewCore"
+        xmlns:gauss="clr-namespace:GaussianWpf;assembly=GaussianWpf"
+        xmlns:sys="clr-namespace:System;assembly=System.Runtime"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <Grid>
+        <TabControl>
+            <TabItem Header="Normal">
+                <local:NormalUserControl></local:NormalUserControl>
+            </TabItem>
+
+            <TabItem Header="Histogram">
+                <TabItem.DataContext>
+                    <local:HistogramViewModel></local:HistogramViewModel>
+                </TabItem.DataContext>
+
+                <DockPanel>
+                    <view:HistogramControl
+
+                        x:Name="hc" DockPanel.Dock="Top" Height="800"
+                        Data="{Binding Points }"
+                        Target="Item2"
+                        Observation="Item1" />
+                </DockPanel>
+            </TabItem>
+        </TabControl>
+    </Grid>
+</Window>
