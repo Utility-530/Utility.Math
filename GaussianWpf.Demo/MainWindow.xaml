@@ -1,0 +1,40 @@
+﻿<Window x:Class="GradientDemo.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:GradientDemo"
+        xmlns:view="clr-namespace:GaussianWpf;assembly=GaussianWpf"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+
+    <StackPanel >
+        <Label HorizontalContentAlignment="Center">Animated from Code Behind. Click to animate.</Label>
+        <Rectangle Margin="10" x:Name="Rectangle1" MinWidth="20" MinHeight="20" Width="200" Height="100"
+                       Stroke="Black" StrokeThickness="1">
+            <Rectangle.Fill>
+                <LinearGradientBrush StartPoint="0,0" EndPoint="1,0" >
+                    <GradientStop x:Name="GradientStop2" Color="White" Offset="0.0" />
+                    <GradientStop x:Name="GradientStop1" Color="Gray" Offset="0.5" />
+                    <GradientStop x:Name="GradientStop3" Color="White" Offset="1.0" />
+
+                </LinearGradientBrush>
+            </Rectangle.Fill>
+        </Rectangle >
+
+        <Label HorizontalContentAlignment="Center">Animated from control. Click to animate.</Label>
+        <view:GaussianControl Height="50" Width="100" MouseDoubleClick="GaussianControl_MouseDoubleClick" x:Name="GaussianControl1">
+
+        </view:GaussianControl>
+        <ItemsControl x:Name="ItemsControl1">
+            <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                    <view:GaussianControl Height="15" Width="50" Ratio="{Binding Ratio}"/>
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+        </ItemsControl>
+    </StackPanel>
+
+
+
+</Window>
