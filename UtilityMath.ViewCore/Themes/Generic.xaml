@@ -2,7 +2,8 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
     <ResourceDictionary.MergedDictionaries>
-        <ResourceDictionary Source="/UtilityMath.ViewCore;component/Themes/DistributionControl.xaml"></ResourceDictionary>
-        <ResourceDictionary Source="/UtilityMath.ViewCore;component/Themes/HistogramControl.xaml"></ResourceDictionary>
+        <ResourceDictionary Source="/UtilityMath.View;component/Themes/NormalDistributionControl.xaml"></ResourceDictionary>
+        <ResourceDictionary Source="/UtilityMath.View;component/Themes/HistogramControl.xaml"></ResourceDictionary>
+        <ResourceDictionary Source="/UtilityMath.View;component/Themes/NormalHeatMapControl.xaml"></ResourceDictionary>
     </ResourceDictionary.MergedDictionaries>
 </ResourceDictionary>

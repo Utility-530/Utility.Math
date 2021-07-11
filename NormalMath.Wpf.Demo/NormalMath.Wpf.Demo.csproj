@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
-    <TargetFramework>netcoreapp3.0</TargetFramework>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
     <UseWPF>true</UseWPF>
   </PropertyGroup>
 
@@ -12,8 +12,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\GaussianWpf\GaussianWpf.csproj" />
-    <ProjectReference Include="..\UtilityMath.ViewCore\UtilityMath.ViewCore.csproj" />
+    <ProjectReference Include="..\UtilityMath.ViewCore\UtilityMath.View.csproj" />
   </ItemGroup>
 
   <ItemGroup>
@@ -21,12 +20,6 @@
       <SubType>Code</SubType>
       <DependentUpon>MainWindow.xaml</DependentUpon>
     </Compile>
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Update="Data\HistogramData.csv">
-      <Generator>MSBuild:Compile</Generator>
-    </None>
   </ItemGroup>
 
   <ItemGroup>

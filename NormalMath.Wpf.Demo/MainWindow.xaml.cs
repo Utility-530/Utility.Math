@@ -1,6 +1,6 @@
 ﻿using System.Windows;
 
-namespace UtilityMath.WpfApp
+namespace NormalMath.Wpf.Demo
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml

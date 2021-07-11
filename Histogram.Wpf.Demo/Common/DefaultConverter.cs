@@ -4,7 +4,7 @@ using System.Globalization;
 using System.Text;
 using System.Windows.Data;
 
-namespace UtilityMath.WpfApp
+namespace Histogram.Wpf.Demo
 {
     public class DefaultConverter : IValueConverter
     {

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace UtilityMath.WpfApp
+namespace Histogram.Wpf.Demo.ViewModel
 {
     public class HistogramViewModel
     {

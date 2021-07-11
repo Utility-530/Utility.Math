@@ -6,14 +6,14 @@ namespace UtilityMath
 {
     public static class Histogram
     {
-        public static Dictionary<Tuple<double, double>, double> ToHistogram(this IEnumerable<Tuple<double, double>> dt, double binSize)
+        public static Dictionary<Tuple<double, double>, double> ToHistogram(this (double, double)[] dt, double binSize)
         {
             var ranges = dt.GetRanges(binSize).ToList();
 
             return dt.ToHistogram(ranges);
         }
 
-        public static Dictionary<Tuple<double, double>, double> ToHistogram(this IEnumerable<Tuple<double, double>> dt, IEnumerable<Tuple<double, double>> ranges)
+        public static Dictionary<Tuple<double, double>, double> ToHistogram(this (double, double)[] dt, IEnumerable<Tuple<double, double>> ranges)
         {
             return dt
                 .GroupBy(i => ranges.FirstOrDefault(r => r.Item1 <= i.Item1 & i.Item1 < r.Item2))
@@ -24,7 +24,7 @@ namespace UtilityMath
 
         private static double dsf = double.Epsilon;
 
-        public static IEnumerable<Tuple<double, double>> GetRanges(this IEnumerable<Tuple<double, double>> dt, double binSize)
+        public static IEnumerable<Tuple<double, double>> GetRanges(this (double, double)[] dt, double binSize)
         {
             var datax = dt.Select(_ => _.Item1);
             var min = datax.Min() - binSize / 2;
@@ -33,9 +33,9 @@ namespace UtilityMath
             return Enumerable.Range(0, binCount).Select(x => Tuple.Create(x * binSize + min, (x + 1) * binSize + min - dsf));
         }
 
-        public static IEnumerable<KeyValuePair<Tuple<double, double>, double>> ToHistogramByBinCount(this IEnumerable<Tuple<double, double>> dt, int binCount)
+        public static IEnumerable<KeyValuePair<Tuple<double, double>, double>> ToHistogramByBinCount(this (double, double)[] data, int binCount)
         {
-            var densities = dt.GroupBy(_ => _.Item1).OrderBy(a => a.Key).Select(_ => new
+            var densities = data.GroupBy(_ => _.Item1).OrderBy(a => a.Key).Select(_ => new
             {
                 key = _.Key,
                 density = _.Count(),

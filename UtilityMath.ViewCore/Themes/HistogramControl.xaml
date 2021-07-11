@@ -1,10 +1,10 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                    xmlns:local="clr-namespace:UtilityMath.ViewCore"
+                    xmlns:local="clr-namespace:UtilityMath.View"
                     xmlns:pt="http://propertytools.org/wpf"
                     xmlns:oxy="http://oxyplot.org/wpf">
 
-    <local:StringFomatConverter x:Key="FormatConverter" />
+    <local:StringFomatConverter x:Key="StringFomatConverter" />
 
     <Style TargetType="{x:Type local:HistogramControl }">
         <Setter Property="Template">
@@ -15,11 +15,11 @@
                             <CheckBox Height="20" IsChecked="{Binding ShowEstimation,RelativeSource={RelativeSource TemplatedParent}}" Margin="10" Content="Show Estimation" x:Name="cbShow" />
 
                             <Label Content="Bin Size" VerticalAlignment="Center"></Label>
-                            <pt:SpinControl Value="{Binding BinSize,RelativeSource={RelativeSource TemplatedParent}}" Margin="4" Minimum="0" Height="25" SmallChange="0.1" LargeChange="1.0">
-                                <TextBox Text="{Binding BinSize,Converter={StaticResource FormatConverter},ConverterParameter=\{0:n3\},RelativeSource={RelativeSource TemplatedParent}}"  Width="30" BorderThickness="0" HorizontalContentAlignment="Right" />
+                            <pt:SpinControl Value="{Binding BinSize,RelativeSource={RelativeSource TemplatedParent}}" Margin="4" Minimum="1" Height="25" SmallChange="0.1" LargeChange="1.0">
+                                <TextBox Text="{Binding BinSize,Converter={StaticResource StringFomatConverter},ConverterParameter=\{0:n3\},RelativeSource={RelativeSource TemplatedParent}}"  Width="30" BorderThickness="0" HorizontalContentAlignment="Right" />
                             </pt:SpinControl>
                             <Label Content="Bin Count" VerticalAlignment="Center"></Label>
-                            <pt:SpinControl Value="{Binding BinCount,RelativeSource={RelativeSource TemplatedParent}}" Margin="4" Minimum="0" Height="25" SmallChange="1">
+                            <pt:SpinControl Value="{Binding BinCount,RelativeSource={RelativeSource TemplatedParent}}" Margin="4" Minimum="1" Height="25" SmallChange="1">
                                 <TextBox Text="{Binding BinCount,RelativeSource={RelativeSource TemplatedParent}}"  Width="30" BorderThickness="0" HorizontalContentAlignment="Right" />
                             </pt:SpinControl>
                             <!--<TextBlock Text="{TemplateBinding Error}" />
@@ -41,8 +41,8 @@
 
                                     <oxy:TwoColorAreaSeries ItemsSource="{TemplateBinding Points}"
                                             Title="Histogram"
-                                            DataFieldX="Item1"
-                                            DataFieldY="Item2"
+                                            DataFieldX="X"
+                                            DataFieldY="Y"
                                             Fill="LightBlue"
                                                             StrokeThickness="2"
                                                             LineStyle="Solid"
@@ -55,6 +55,7 @@
                                                             Color2="Red" />
                                 </oxy:Plot.Series>
                             </oxy:Plot>
+                            <TextBlock x:Name="ErrorTextBlock" Foreground="Red"></TextBlock>
                         </Grid>
                     </DockPanel>
                 </ControlTemplate>

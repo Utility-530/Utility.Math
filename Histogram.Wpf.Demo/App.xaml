@@ -1,7 +1,7 @@
-﻿<Application x:Class="UtilityMath.WpfAppCore.App"
+﻿<Application x:Class="Histogram.Wpf.Demo.App"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:local="clr-namespace:UtilityMath.WpfAppCore"
+             xmlns:local="clr-namespace:Histogram.Wpf.Demo"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
          

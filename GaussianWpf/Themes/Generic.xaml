@@ -13,10 +13,9 @@
                        Stroke="Black" StrokeThickness="1">
                         <Rectangle.Fill>
                             <LinearGradientBrush StartPoint="0,0" EndPoint="1,0" >
-                                <GradientStop x:Name="GradientStop2" Color="White" Offset="0.0" />
-                                <GradientStop x:Name="GradientStop1" Color="Gray" Offset="0.5" />
-                                <GradientStop x:Name="GradientStop3" Color="White" Offset="1.0" />
-
+                                <GradientStop x:Name="GradientStop2" Color="Gray" Offset="0.0" />
+                                <GradientStop x:Name="GradientStop1" Color="Black" Offset="0.5" />
+                                <GradientStop x:Name="GradientStop3" Color="Gray" Offset="1.0" />
                             </LinearGradientBrush>
                         </Rectangle.Fill>
                     </Rectangle>
