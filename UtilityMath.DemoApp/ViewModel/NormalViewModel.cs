@@ -21,8 +21,8 @@ namespace UtilityMath.WpfApp
         public System.Reflection.MethodInfo SelectedValue { get => selectedValue; set => this.RaiseAndSetIfChanged(ref selectedValue, value); }
 
         public Dictionary<string, System.Reflection.MethodInfo> Dictionary =>
-            typeof(UtilityMath.Statistics.GaussianCalculator).GetMethodsBySignature(typeof(Normal), typeof(Normal), typeof(Normal))
-            .Concat(typeof(UtilityMath.Statistics.GaussianCalculator).GetMethodsBySignature(typeof(Normal), typeof(Normal), typeof(Normal), typeof(int)))
+            typeof(UtilityMath.Statistics.GaussianMath).GetMethodsBySignature(typeof(Normal), typeof(Normal), typeof(Normal))
+            .Concat(typeof(UtilityMath.Statistics.GaussianMath).GetMethodsBySignature(typeof(Normal), typeof(Normal), typeof(Normal), typeof(int)))
             .ToDictionary(_ => _.Name, _ => _);
 
         public NormalViewModel()

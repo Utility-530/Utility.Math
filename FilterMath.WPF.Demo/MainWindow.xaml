@@ -1,0 +1,63 @@
+﻿<Window x:Class="FilterMath.WPF.Demo.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:oxy="http://oxyplot.org/wpf"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:vms="clr-namespace:FilterMath.WPF.Demo"
+        xmlns:lvc="clr-namespace:LiveChartsCore.SkiaSharpView.WPF;assembly=LiveChartsCore.SkiaSharpView.WPF"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+
+    <FrameworkElement.Resources>
+        <DataTemplate DataType="{x:Type vms:KalmanFilterViewModel}">
+            <Grid>
+                <lvc:CartesianChart Series="{Binding Series}" />
+            </Grid>
+        </DataTemplate>
+
+        <DataTemplate x:Key="B" DataType="{x:Type vms:KalmanAggregateFilterViewModel}">
+            <Grid>
+                <lvc:CartesianChart Series="{Binding Series}" />
+            </Grid>
+        </DataTemplate>
+
+        <DataTemplate x:Key="A" DataType="{x:Type vms:KalmanAggregateFilterViewModel}">
+            <Grid>
+                <oxy:PlotView Model="{Binding Model}" />
+            </Grid>
+        </DataTemplate>
+        <DataTemplate x:Key="C" DataType="{x:Type vms:KalmanAggregateFilterViewModel}">
+            <Grid>
+                <DataGrid ItemsSource="{Binding Values}" />
+            </Grid>
+        </DataTemplate>
+
+        <vms:KalmanAggregateFilterViewModel x:Key="KalmanAggregateFilterViewModel" />
+    </FrameworkElement.Resources>
+
+    <TabControl>
+        <TabItem Header="{Binding Key}"  Content="{Binding }">
+            <FrameworkElement.DataContext>
+                <vms:KalmanFilterViewModel />
+            </FrameworkElement.DataContext>
+        </TabItem>
+        <TabItem Header="{Binding Key}"
+                 Content="{Binding }"
+                 ContentTemplate="{StaticResource B}"
+                 DataContext="{StaticResource KalmanAggregateFilterViewModel}">
+        </TabItem>
+
+        <TabItem Header="{Binding Key}"
+                 Content="{Binding }"
+                 ContentTemplate="{StaticResource A}"
+                 DataContext="{StaticResource KalmanAggregateFilterViewModel}">
+        </TabItem>
+
+        <TabItem Header="{Binding Key}"
+                 Content="{Binding }"
+                 ContentTemplate="{StaticResource C}"
+                 DataContext="{StaticResource KalmanAggregateFilterViewModel}">
+        </TabItem>
+    </TabControl>
+</Window>

@@ -1,7 +1,7 @@
 ﻿using ReactiveUI;
 using System.Reactive.Linq;
 
-namespace NormalMath.Wpf.Demo.ViewModel
+namespace NormalMath.Wpf.Demo
 {
     public class NormalViewModel : ReactiveObject
     {

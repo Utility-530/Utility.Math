@@ -3,44 +3,40 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:NormalMath.Wpf.Demo" 
+        xmlns:local="clr-namespace:NormalMath.Wpf.Demo"
+        xmlns:controls="clr-namespace:GaussianMath.Wpf.Demo.Infrastructure.Auxide.Controls"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <FrameworkElement.Resources>
         <DataTemplate DataType="{x:Type local:MethodSelectionViewModel}">
-            <ComboBox 
-            SelectedValue="{Binding SelectedValue,Mode=OneWayToSource}" SelectedValuePath="Value" SelectedIndex="0" 
-            ItemsSource="{Binding MethodsDictionary,Mode=OneTime}" Width="150">
-
+            <ComboBox
+            SelectedIndex="0"
+            SelectedValue="{Binding SelectedValue,Mode=OneWayToSource}"
+            SelectedValuePath="Value"
+            ItemsSource="{Binding MethodsDictionary,Mode=OneTime}"  Height="30" Margin="10">
             </ComboBox>
         </DataTemplate>
+
+        <DataTemplate DataType="{x:Type local:NormalViewModel}">
+            <Viewbox>
+                <local:NormalView DataContext="{Binding }"></local:NormalView>
+            </Viewbox>
+        </DataTemplate>
     </FrameworkElement.Resources>
-    
+
     <FrameworkElement.DataContext>
-        <local:MainViewModel/>
+        <local:MainViewModel />
     </FrameworkElement.DataContext>
-    
-    <StackPanel>
-        <ContentControl Content="{Binding SelectionViewModel, Mode=OneTime}">
-            
-        </ContentControl>
-        <UniformGrid Columns="1">
-            <UniformGrid Rows="1">
 
-                <local:NormalView 
-                DataContext="{Binding I1}" ></local:NormalView>
+    <DockPanel>
+        <ContentControl DockPanel.Dock="Top" Content="{Binding SelectionViewModel, Mode=OneTime}" />
 
-                <local:NormalView 
-                DataContext="{Binding I2}"   ></local:NormalView>
-
-            </UniformGrid>
-            <UniformGrid Rows="1" Columns="1">
-                <local:NormalView 
-                    IsChecked="True"
-                DataContext="{Binding O}"  >
-
-                </local:NormalView>
-            </UniformGrid>
-        </UniformGrid>
-    </StackPanel>    
+        <ItemsControl ItemsSource="{Binding Collection}">
+            <ItemsControl.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <controls:UniformPanel  Columns="2" Rows="2" />
+                </ItemsPanelTemplate>
+            </ItemsControl.ItemsPanel>
+        </ItemsControl>
+    </DockPanel>
 </Window>

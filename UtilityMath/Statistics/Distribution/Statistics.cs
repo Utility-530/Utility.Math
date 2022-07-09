@@ -23,7 +23,7 @@ namespace UtilityMath.Statistics
             }
         }
 
-        public static double StandardDeviation(IEnumerable<double> values)
+        public static double StandardDeviation(this IEnumerable<double> values)
         {
             if (values.Count() > 0)
             {
@@ -35,7 +35,7 @@ namespace UtilityMath.Statistics
                 return 0;
         }
 
-        public static double WeightedAverage<T>(IEnumerable<T> records, Func<T, double> value, Func<T, double> weight, double control = 0)
+        public static double WeightedAverage<T>(this IEnumerable<T> records, Func<T, double> value, Func<T, double> weight, double control = 0)
         {
             double weightedValueSum = records.Sum(x => (value(x) - control) * weight(x));
             double weightSum = records.Sum(x => weight(x));

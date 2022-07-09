@@ -5,7 +5,7 @@ using System.Linq;
 
 namespace UtilityMath.Statistics
 {
-    public static class GaussianCalculator
+    public static class GaussianMath
     {
         public static Normal Negative(this Normal sbw)
         {

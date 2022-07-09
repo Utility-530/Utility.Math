@@ -3,8 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-
-        xmlns:view="clr-namespace:UtilityMath.View;assembly=UtilityMath.View" 
+        xmlns:view="clr-namespace:UtilityMath.View;assembly=UtilityMath.View"
         xmlns:local="clr-namespace:Histogram.Wpf.Demo.ViewModel"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
@@ -14,10 +13,8 @@
     </Window.DataContext>
 
     <view:HistogramControl
-                        x:Name="hc" DockPanel.Dock="Top" 
+                        x:Name="hc" DockPanel.Dock="Top"
                         Data="{Binding Points }"
                         Target="Item2"
                         Observation="Item1" />
-
-
 </Window>

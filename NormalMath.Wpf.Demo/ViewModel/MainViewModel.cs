@@ -1,18 +1,18 @@
-﻿using System;
+﻿using MathNet.Numerics.Distributions;
+using ReactiveUI;
+using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reactive.Linq;
 using System.Reactive.Threading.Tasks;
 using System.Reflection;
 using System.Threading.Tasks;
-using MathNet.Numerics.Distributions;
-using ReactiveUI;
 
 namespace NormalMath.Wpf.Demo
 {
     public class MainViewModel : ReactiveObject
     {
-
         public MainViewModel()
         {
             SelectionViewModel
@@ -36,14 +36,14 @@ namespace NormalMath.Wpf.Demo
 
         public MethodSelectionViewModel SelectionViewModel { get; } = new MethodSelectionViewModel();
 
-        public ViewModel.NormalViewModel I1 { get; } = new ViewModel.NormalViewModel { Mean = 2, StandardDeviation = 3 };
+        public NormalViewModel I1 { get; } = new NormalViewModel { Mean = 2, StandardDeviation = 3 };
 
-        public ViewModel.NormalViewModel I2 { get; } = new ViewModel.NormalViewModel { Mean = 2, StandardDeviation = 3 };
+        public NormalViewModel I2 { get; } = new NormalViewModel { Mean = 2, StandardDeviation = 3 };
 
-        public ViewModel.NormalViewModel O { get; } = new ViewModel.NormalViewModel();
+        public NormalViewModel O { get; } = new NormalViewModel();
 
+        public ICollection Collection => new ReactiveObject[] { SelectionViewModel, I1, I2, O };
     }
-
 
     public class MethodSelectionViewModel : ReactiveObject
     {
@@ -52,8 +52,8 @@ namespace NormalMath.Wpf.Demo
         public MethodInfo SelectedValue { get => selectedValue; set => this.RaiseAndSetIfChanged(ref selectedValue, value); }
 
         public Dictionary<string, MethodInfo> MethodsDictionary =>
-            typeof(UtilityMath.Statistics.GaussianCalculator).GetMethodsBySignature(typeof(Normal), typeof(Normal), typeof(Normal))
-            .Concat(typeof(UtilityMath.Statistics.GaussianCalculator).GetMethodsBySignature(typeof(Normal), typeof(Normal), typeof(Normal), typeof(int)))
+            typeof(UtilityMath.Statistics.GaussianMath).GetMethodsBySignature(typeof(Normal), typeof(Normal), typeof(Normal))
+            .Concat(typeof(UtilityMath.Statistics.GaussianMath).GetMethodsBySignature(typeof(Normal), typeof(Normal), typeof(Normal), typeof(int)))
             .ToDictionary(a => a.Name, a => a);
     }
 }
