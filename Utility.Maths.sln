@@ -3,15 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.2.32408.312
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UtilityMath", "UtilityMath\UtilityMath.csproj", "{9ECB7F2E-CD1B-40F4-AB93-75E0AAEF9B27}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Utility.Maths", "Utility.Maths\Utility.Maths.csproj", "{9ECB7F2E-CD1B-40F4-AB93-75E0AAEF9B27}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UtilityMath.Test", "UtilityMath.Test\UtilityMath.Test.csproj", "{1E71A9D3-ED1C-4AD1-B4D2-095EA0210D9C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Utility.Maths.Test", "Utility.Maths.Test\UtilityMath.Test.csproj", "{1E71A9D3-ED1C-4AD1-B4D2-095EA0210D9C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UtilityMath.WpfApp", "UtilityMath.DemoApp\UtilityMath.WpfApp.csproj", "{8C02D8BB-F077-4076-807E-374BBB7BC632}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Utility.Maths.WpfApp", "Utility.Maths.DemoApp\Utility.Maths.WpfApp.csproj", "{8C02D8BB-F077-4076-807E-374BBB7BC632}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "App", "App", "{E708A206-2490-46BD-930A-24B7B644E288}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UtilityMath.View", "UtilityMath.ViewCore\UtilityMath.View.csproj", "{F0829576-6A66-4BFB-B891-CD9F4F32159A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Utility.Maths.View", "Utility.Maths.ViewCore\Utility.Maths.View.csproj", "{F0829576-6A66-4BFB-B891-CD9F4F32159A}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GaussianIntegers", "GaussianIntegers\GaussianIntegers.csproj", "{8FD9A967-F628-4419-B6B0-3BEA3E279BC9}"
 EndProject
