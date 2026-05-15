@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
-    <TargetFramework>netcoreapp3.1</TargetFramework>
+	  <TargetFramework>net10.0-windows</TargetFramework>
     <UseWPF>true</UseWPF>
   </PropertyGroup>
 
@@ -36,7 +36,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\UtilityMath.ViewCore\UtilityMath.View.csproj" />
+    <ProjectReference Include="..\Utility.Maths.ViewCore\UtilityMath.View.csproj" />
   </ItemGroup>
 
 </Project>

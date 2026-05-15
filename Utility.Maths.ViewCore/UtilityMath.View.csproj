@@ -16,7 +16,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\UtilityMath\UtilityMath.csproj" />
+    <ProjectReference Include="..\Utility.Maths\Utility.Maths.csproj" />
   </ItemGroup>
 
   <ItemGroup>
